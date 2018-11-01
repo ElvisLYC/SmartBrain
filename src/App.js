@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
+import Navigation from './components/Navigation/Navigation'
+import Logo from './components/Logo/Logo'
 import './App.css';
-import Navigation from './components/Navigation/Navigation.js'
 
 class App extends Component {
   render() {
     return (
       <div className="App">
         <Navigation />
-        {/* {<Logo />
+        <Logo />
+        {/*
         <ImageLinkForm />
         <FaceRecognition />} */}
       </div>
@@ -15,4 +17,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default App; //exposing App to other module
