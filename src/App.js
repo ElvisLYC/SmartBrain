@@ -4,6 +4,7 @@ import Logo from './components/Logo/Logo'
 import Clarifai from 'clarifai';
 import ImageLinkForm from './components/ImageLinkForm/ImageLinkForm'
 import Signin from './components/Signin/Signin'
+import Register  from './components/Register/Register'
 import FaceRecognition from './components/FaceRecognition/FaceRecognition'
 import Rank from './components/Rank/Rank'
 import Particles from 'react-particles-js';
@@ -36,7 +37,8 @@ class App extends Component {
 			input: '',
       imageUrl: '',
       box: {},
-      route: 'signin'
+      route: 'signin',
+      isSignedin: false
 		}
 	}
 
@@ -73,6 +75,11 @@ displayFaceBox = (box) =>{
 	}
 
   onRouteChange = (route) => {
+    if(route === 'signout') {
+      this.setState({isSignedin: false})
+    } else if(route === 'home'){
+      this.setState({isSignedin: true})
+    }
     this.setState({route: route});
   }
 
@@ -82,18 +89,22 @@ displayFaceBox = (box) =>{
         <Particles className='particles'
              params={particlesOptions}
            />
-           <Navigation onRouteChange={this.onRouteChange} />
-        { this.state.route === 'signin'
-        ?<Signin onRouteChange={this.onRouteChange}/>
-        :<div>
-          <Logo />
-          <Rank />
-          <ImageLinkForm
-  					onInputChange={this.onInputChange}
-  					onButtonSubmit={this.onButtonSubmit}
-  				/>
-          <FaceRecognition box={this.state.box} imageUrl = {this.state.imageUrl}/>
+           <Navigation isSignedin={this.state.isSignedin} onRouteChange={this.onRouteChange} />
+        { this.state.route === 'home'
+          ? <div>
+            <Logo />
+            <Rank />
+            <ImageLinkForm
+    					onInputChange={this.onInputChange}
+    					onButtonSubmit={this.onButtonSubmit}
+    				/>
+            <FaceRecognition box={this.state.box} imageUrl = {this.state.imageUrl}/>
       </div>
+      :(
+        this.state.route === 'signin'
+        ? <Signin onRouteChange={this.onRouteChange}/>
+        : <Register onRouteChange={this.onRouteChange}/>
+        )
       }
       </div>
     );
