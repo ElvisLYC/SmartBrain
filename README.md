@@ -4,4 +4,5 @@ This application will be built using ReactJS, NodeJS, ExpressJs, Javascript, HTM
 
 ![Screenshot](Smartbrain.png)
 
-This is just a snapshopt of the application. Currently completed the front-end and will move on to build the backend. Stay tuned :)
+This is just a snapshopt of the application. Currently completed the front-end and will move on to build the backend. Stay tuned :) 
+KIV at the moment.
